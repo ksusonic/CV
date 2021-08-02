@@ -9,7 +9,7 @@ jobs:
     - uses: actions/checkout@v2
     # Компилируем документ
     - name: Build document
-      uses: xu-cheng/latex-action@v2
+      uses: dante-ev/latex-action@v0.2.0
       with:
         # Переименуйте, если у вас другой файл
         root_file: main.tex
