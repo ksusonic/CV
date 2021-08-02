@@ -30,8 +30,8 @@ jobs:
         path: latex_sources/my_doc.pdf
   deploy:
     runs-on: ubuntu-latest
-    # Деплой будет только на ветке master. Закомментируйте, если не надо
-    if: github.ref == 'refs/heads/master'
+    # Деплой будет только на ветке main. Закомментируйте, если не надо
+    if: github.ref == 'refs/heads/main'
     # Можно зависеть от любого другого job. Порядок выполнения будет подстраиваться.
     needs: [build]
     steps:
