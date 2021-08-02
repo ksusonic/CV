@@ -30,3 +30,79 @@ jobs:
         # Здесь это <working_directory>/<jobname>.pdf
 
         path: latex_sources/cv.pdf
+        
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    if: github.ref == 'refs/heads/main'
+
+    # Можно зависеть от любого другого job. Порядок выполнения будет подстраиваться.
+    needs: [build]
+
+    steps:
+      - name: Variables
+        id: vars
+
+        run: |
+
+          echo «::set-output name=date::$(date +'%Y-%m-%d')»
+          echo «::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)»
+
+      - name: Download artifacts
+
+        uses: actions/download-artifact@v2
+
+        with:
+          name: my_doc
+
+      - name: Create Release
+
+        uses: actions/create-release@v1
+
+        id: create_release
+
+        env:
+
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions
+
+        with:
+        
+          tag_name: my_doc-${{ steps.vars.outputs.date }}-${{ steps.vars.outputs.sha8 }}
+
+          # Имя, которое будет высвечиваться в релизе
+
+          release_name: My Actions document (version ${{ steps.vars.outputs.date }})
+
+          draft: false
+
+          prerelease: false
+
+      # Прикладываемые файлы надо заливать отдельным step
+
+      - name: Upload pdf asset
+
+        uses: actions/upload-release-asset@v1
+
+        env:
+
+          # Тоже требуется токен
+
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+        with:
+
+          # Из предыдущего step с id=create_release генерится upload_url — по нему и надо заливать
+
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+
+          # Не переходим в папку latex_sources, поскольку download-artifacts грузит в текущую директорию
+
+          asset_path: ./my_doc.pdf
+
+          # Имя, которое будет высвечиваться в релизе
+
+          asset_name: my_asset_name.pdf
+
+          asset_content_type: application/pdf
+
