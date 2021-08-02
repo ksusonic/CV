@@ -59,7 +59,7 @@ jobs:
           # Получим теги вида “my_doc-<дата билда>-<первые 8 символов из sha коммита>
           tag_name: my_doc-${{ steps.vars.outputs.date }}-${{ steps.vars.outputs.sha8 }}
           # Имя, которое будет высвечиваться в релизе
-          release_name: My Actions document (version ${{ steps.vars.outputs.date }})
+          release_name: Dan's CV (version ${{ steps.vars.outputs.date }})
           # Наш релиз не набросок и не пререлиз, так что оба в false
           draft: false
           prerelease: false
@@ -75,5 +75,5 @@ jobs:
           # Не переходим в папку latex_sources, поскольку download-artifacts грузит в текущую директорию
           asset_path: ./my_doc.pdf
           # Имя, которое будет высвечиваться в релизе
-          asset_name: my_asset_name.pdf
+          asset_name: dan_cv.pdf
           asset_content_type: application/pdf
