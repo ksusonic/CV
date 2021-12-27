@@ -27,7 +27,7 @@
 % ------------------------
 
 % margins
-\newgeometry{left=15mm,right=15mm,top=15mm,bottom=15mm}
+\newgeometry{left=10mm,right=10mm,top=10mm,bottom=10mm}
 
 % width of the gap between left and right column
 \newlength{\cvcolumngapwidth}
@@ -241,19 +241,17 @@
     \includegraphics[height=36mm]{dan.jpg}
 }{
     % name
-    \cvname{Даниил Моисеев} 
-    \cvdurationstyle {Junior-Middle Python developer}
+    \cvname{Daniil Moiseev}
+    \cvdurationstyle {Python, C++ developer}
 
     % address
-    \cvpersonalinfolinewithicon{height=4mm}{img/072-location.pdf}{
-        Россия, москва
-    }
+    \cvpersonalinfolinewithicon{height=4mm}{img/072-location.pdf}{Russia, Moscow}
 
     % phone number
     \cvpersonalinfolinewithicon{height=4mm}{img/067-phone.pdf}{
         \href{tel:+79156207966}{+7 (915) 620-79-66}
     }
-    
+
     % telegram
     \cvpersonalinfolinewithicon{height=4mm}{img/telegram.png}{
         \href{https://t.me/ksusonic}{@ksusonic}
@@ -264,7 +262,6 @@
         \href{mailto:dan@dannyy.ru}{dan@dannyy.ru}
     }
 
-
     % github account
     \cvpersonalinfolinewithicon{height=4mm}{img/github-square-512.png}{
         \href{https://github.com/ksusonic}{GitHub}
@@ -272,42 +269,55 @@
 }
 
 
-\cvsection{О себе}
+\cvsection{Personal information}
 \cvitem{
     \cvdurationstyle{}
 }{
-    Имею опыт веб-разработки (бэкенд), и написания кода более 2 лет. Легко обучаюсь. Хорошо работаю в коллективе. Хочу улучшить свои hard-skills в разработке, поработав в небольшом сплоченном коллективе, чтобы чувствовать самостоятельность и развитие компании. Через 2 года планирую дорасти до тимлида.
+    Now I'm developing the Alice - voice assistant by Yandex. I find it challenging, so it stimulates to figure out the better solutions.
+    I prefer product development rather than infrastructure. My C++ code is under NDA and pet-projects are on the GitHub.
 }
 
 % work experience
 % ---------------
 
-\cvsection{Опыт работы}
+\cvsection{Work experience}
 
-% Fake Company 2
+% Yandex
 \cvitem{
-    \cvdurationstyle{Июнь 2021 -- наст. время}
+    \cvdurationstyle{September 2021 -- present}
 }{
-    \cvtitle{Стажер-разработчик}
+    \cvtitle{Junior backend developer}
 
-    Яндекс, поисковый портал
+    Yandex (Russia), SmartTV backend team
 
     \begin{itemize}[leftmargin=*]
-        \item Разработка в команде стабильности сервисов. Занимался улучшением инструментов для работы с инцидентами, автоматизацией процессов и помощи дежурным. 
-        \item В Яндкесе я перенял навыки написания эффективного кода и подтянул алгоритмы. Получил огромный опыт работы в команде, общения с коллегами и расставления приоритетов в задачах. 
+        \item I'm develioping the video scenario of Alice in smart devices. (С++)
     \end{itemize}
 }
 
-% Fake Company 1
+% Yandex internship
 \cvitem{
-    \cvdurationstyle{Ноябрь 2020 -- Май 2021}
+    \cvdurationstyle{June 2021 -- September 2021}
 }{
-    \cvtitle{Преподаватель Python}
+    \cvtitle{Intern}
 
-    Онлайн-школа программирования Kodland
+    Yandex, search departament
 
     \begin{itemize}[leftmargin=*]
-        \item Обучал детей 11-16 лет программированию на Python (синтаксис, типы данных, циклы, списки, функции, PyGame). Решил, что хочу развиваться в разработке. 
+        \item Development at the service stability team. Worked on the instruments for incedent handling in Yandex. (Python)
+    \end{itemize}
+}
+
+% Kodland
+\cvitem{
+    \cvdurationstyle{November 2020 -- May 2021}
+}{
+    \cvtitle{Python tutor}
+
+    Online programming school "Kodland"
+
+    \begin{itemize}[leftmargin=*]
+        \item Taught 11-16 aged students to program on Python (syntax, data, cycles, lists, functions, PyGame).
     \end{itemize}
 }
 
@@ -315,54 +325,51 @@
 % education
 % ---------
 
-\cvsection{Образование}
+\cvsection{Education}
 
 % bachelor's
 \cvitem{
     \cvdurationstyle{2019 -- 2023}
 }{
-    \cvtitle{Высшая школа экономики}
+    \cvtitle{Higher school of economics}
 
-    Московский институт электроники и математики, Москва - бакалавриат
+    Tikhonov Moscow Institute of Electronics and Mathematics, Moscow - bachelor
 }
 
 % bachelor's
 \cvitem{
     \cvdurationstyle{2021 -- 2022}
 }{
-    Интеллектуальный анализ данных, вариативная дисциплина
-
+    Introduction to Data Analysis, minor
 }
 
 % skills
 % ------
 
-\cvsection{Навыки}
+\cvsection{Skills}
 
 \vspace{\cvbetweensectionandheadingextraskipamount}
 
-% languages
+\cvitem{
+    \cvheadingstyle{С++}
+}{
+    Now it's my current programming language. Completed the specialization "С++ modern development" created by MIPT and Yandex on the Coursera.
+    \begin{itemize}
+        \item C++20, STL
+        \item gRPC
+    \end{itemize}
+}
+
 \cvitem{
     \cvheadingstyle{Python 3}
 }{
-    С чем я работал:
+    I use Python to solve some certain problems in which memory and time are not critical.
     \begin{itemize}
-        \item Стандартная библиотека
         \item asyncio, aiohttp, aiogram
         \item FastApi, Django
-        \item Pydantic, SqlAlchemy, Alembic, asyncpg
-        \item numpy, pandas, sklearn, nlp-библиотеки
+        \item Pydantic, SQLAlchemy, alembic, asyncpg
+        \item numpy, pandas, sklearn, pytorch
     \end{itemize}
-
-    Имею хорошее знание языка и его работы под капотом благодаря знанию c++.
-}
-
-% fake skills
-\cvitem{
-    \cvheadingstyle{С++17, 20}
-}{
-    Имею навыки написания алгоритмов с помощью STL.  
-    Проходил серию курсов "Разработка на современном С++" от МФТИ и Яндекса на Coursera. Сертификаты: \href{https://coursera.org/share/aa5404b249039031fb8afb2415d9f2d9}{Красный пояс;} \href{https://coursera.org/share/ac14607b020a1162afb5c63cb5624de7}{Желтый пояс;} \href{https://coursera.org/share/fd10894b59ebb0997070e88f79a32d0f}{Белый пояс}
 }
 
 % completely fake skills
@@ -371,8 +378,10 @@
 }{
     Linux, Unix
     \begin{itemize}
-        \item работа с системой, bash, git
-        \item Инструменты траблшутинга
+        \item bash, git
+        \item json instead of protobuf
+        \item Unix
+        \item Docker, CI/CD in GitHub
     \end{itemize}
 }
 
@@ -386,9 +395,9 @@
 
 % interests
 \cvitem{
-    \cvheadingstyle{Мои компетенции}
+    \cvheadingstyle{My competencies}
 }{
-    Командная работа, планирование, ориентация на пользователя, саморазвитие. 
+    Team work, planning, client-orientation, self-development.
 }
 
 \end{document}
