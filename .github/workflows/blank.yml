@@ -12,7 +12,7 @@ jobs:
       uses: dante-ev/latex-action@v0.2.0
       with:
         # Переименуйте, если у вас другой файл
-        root_file: resume.tex
+        root_file: resume_ru.tex
         # Больше параметров в офф. документации
         working_directory: latex_sources/
         # Аргументы, к которыми запускать компилятор (latexmk)
