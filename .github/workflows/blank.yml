@@ -14,7 +14,7 @@ jobs:
         # Переименуйте, если у вас другой файл
         root_file: resume_ru.tex
         # Больше параметров в офф. документации
-        working_directory: latex_sources/
+        working_directory: ./
         # Аргументы, к которыми запускать компилятор (latexmk)
         # -jobname=<name> дает возможность поменять имя выходного файла
         args: -jobname=resume_ru -pdf -file-line-error -halt-on-error -interaction=nonstopmode
@@ -25,7 +25,7 @@ jobs:
         # Переименуйте, если у вас другой файл
         root_file: resume_en.tex
         # Больше параметров в офф. документации
-        working_directory: latex_sources/
+        working_directory: ./
         # Аргументы, к которыми запускать компилятор (latexmk)
         # -jobname=<name> дает возможность поменять имя выходного файла
         args: -jobname=resume_en -pdf -file-line-error -halt-on-error -interaction=nonstopmode
@@ -38,7 +38,7 @@ jobs:
         name: resume_ru
         # Путь до собранного pdf. Может содержать “*”, “**”
         # Здесь это <working_directory>/<jobname>.pdf
-        path: latex_sources/resume_ru.pdf
+        path: resume_ru.pdf
     - name: Upload EN document
       uses: actions/upload-artifact@v2
       with:
@@ -46,7 +46,7 @@ jobs:
         name: resume_en
         # Путь до собранного pdf. Может содержать “*”, “**”
         # Здесь это <working_directory>/<jobname>.pdf
-        path: latex_sources/resume_en.pdf
+        path: resume_en.pdf
 
   deploy:
     runs-on: ubuntu-latest
@@ -80,11 +80,11 @@ jobs:
           # По офф.документации, надо указать GITHUB_TOKEN
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions
         with:
-          # Берем результат из step с id=vars (см. выше).
+          # Берем результат из step с id=vars (см. выше). 
           # Получим теги вида “resume_ru-<дата билда>-<первые 8 символов из sha коммита>
           tag_name: resume_ru-${{ steps.vars.outputs.date }}-${{ steps.vars.outputs.sha8 }}
           # Имя, которое будет высвечиваться в релизе
-          release_name: Dan's CV (ve ${{ steps.vars.outputs.date }})
+          release_name: Dan's CV (version ${{ steps.vars.outputs.date }})
           # Наш релиз не набросок и не пререлиз, так что оба в false
           draft: false
           prerelease: false
@@ -97,7 +97,7 @@ jobs:
         with:
           # Из предыдущего step с id=create_release генерится upload_url - по нему и надо заливать
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          # Не переходим в папку latex_sources, поскольку download-artifacts грузит в текущую директорию
+
           asset_path: ./resume_ru.pdf
           # Имя, которое будет высвечиваться в релизе
           asset_name: dan_cv-ru.pdf
@@ -110,7 +110,7 @@ jobs:
         with:
           # Из предыдущего step с id=create_release генерится upload_url - по нему и надо заливать
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          # Не переходим в папку latex_sources, поскольку download-artifacts грузит в текущую директорию
+
           asset_path: ./resume_en.pdf
           # Имя, которое будет высвечиваться в релизе
           asset_name: dan_cv-en.pdf
