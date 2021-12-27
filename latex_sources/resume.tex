@@ -27,7 +27,7 @@
 % ------------------------
 
 % margins
-\newgeometry{left=15mm,right=15mm,top=15mm,bottom=15mm}
+\newgeometry{left=10mm,right=10mm,top=10mm,bottom=10mm}
 
 % width of the gap between left and right column
 \newlength{\cvcolumngapwidth}
@@ -241,19 +241,17 @@
     \includegraphics[height=36mm]{dan.jpg}
 }{
     % name
-    \cvname{Даниил Моисеев} 
-    \cvdurationstyle {Junior-Middle Python developer}
+    \cvname{Даниил Моисеев}
+    \cvdurationstyle {Python, C++ разработчик}
 
     % address
-    \cvpersonalinfolinewithicon{height=4mm}{img/072-location.pdf}{
-        Россия, москва
-    }
+    \cvpersonalinfolinewithicon{height=4mm}{img/072-location.pdf}{Москва, Россия}
 
     % phone number
     \cvpersonalinfolinewithicon{height=4mm}{img/067-phone.pdf}{
         \href{tel:+79156207966}{+7 (915) 620-79-66}
     }
-    
+
     % telegram
     \cvpersonalinfolinewithicon{height=4mm}{img/telegram.png}{
         \href{https://t.me/ksusonic}{@ksusonic}
@@ -263,7 +261,6 @@
     \cvpersonalinfolinewithicon{height=4mm}{img/070-envelop.pdf}{
         \href{mailto:dan@dannyy.ru}{dan@dannyy.ru}
     }
-
 
     % github account
     \cvpersonalinfolinewithicon{height=4mm}{img/github-square-512.png}{
@@ -276,7 +273,8 @@
 \cvitem{
     \cvdurationstyle{}
 }{
-    Имею опыт веб-разработки (бэкенд), и написания кода более 2 лет. Легко обучаюсь. Хорошо работаю в коллективе. Хочу улучшить свои hard-skills в разработке, поработав в небольшом сплоченном коллективе, чтобы чувствовать самостоятельность и развитие компании. Через 2 года планирую дорасти до тимлида.
+    В последнее время я занимаюсь разработкой голосого помошника Алисы - эта тема мне интересна, и приносит удовольствие.
+    Мне нравится продуктовая разработка. Весь мой код на C++ находится под NDA, Pet-проекты на GitHub.
 }
 
 % work experience
@@ -284,21 +282,33 @@
 
 \cvsection{Опыт работы}
 
-% Fake Company 2
+% Yandex
 \cvitem{
-    \cvdurationstyle{Июнь 2021 -- наст. время}
+    \cvdurationstyle{Сентябрь 2021 -- наст. время}
+}{
+    \cvtitle{Младший разработчик бэкенда}
+
+    Яндекс, группа разработки бэкенда SmartTV
+
+    \begin{itemize}[leftmargin=*]
+        \item Занимаюсь разарботкой видеосценария голосового ассистента Алисы в умных устройствах. (С++)
+    \end{itemize}
+}
+
+% Yandex internship
+\cvitem{
+    \cvdurationstyle{Июнь 2021 -- Сентябрь 2021}
 }{
     \cvtitle{Стажер-разработчик}
 
     Яндекс, поисковый портал
 
     \begin{itemize}[leftmargin=*]
-        \item Разработка в команде стабильности сервисов. Занимался улучшением инструментов для работы с инцидентами, автоматизацией процессов и помощи дежурным. 
-        \item В Яндкесе я перенял навыки написания эффективного кода и подтянул алгоритмы. Получил огромный опыт работы в команде, общения с коллегами и расставления приоритетов в задачах. 
+        \item Занимался разработкой в команде стабильности сервисов: улучшал инструменты для работы с инцидентами внутри Яндекса. (Python)
     \end{itemize}
 }
 
-% Fake Company 1
+% Kodland
 \cvitem{
     \cvdurationstyle{Ноябрь 2020 -- Май 2021}
 }{
@@ -307,7 +317,7 @@
     Онлайн-школа программирования Kodland
 
     \begin{itemize}[leftmargin=*]
-        \item Обучал детей 11-16 лет программированию на Python (синтаксис, типы данных, циклы, списки, функции, PyGame). Решил, что хочу развиваться в разработке. 
+        \item Обучал детей 11-16 лет программированию на Python (синтаксис, типы данных, циклы, списки, функции, PyGame).
     \end{itemize}
 }
 
@@ -341,28 +351,30 @@
 
 \vspace{\cvbetweensectionandheadingextraskipamount}
 
-% languages
+\cvitem{
+    \cvheadingstyle{С++}
+}{
+    С чем я работал:
+    \begin{itemize}
+        \item C++20, STL
+        \item gRPC
+    \end{itemize}
+
+    В данное время - рабочий язык. Имею знания от серии курсов "Разработка на современном С++" от МФТИ и Яндекса на платформе Coursera.
+}
+
 \cvitem{
     \cvheadingstyle{Python 3}
 }{
     С чем я работал:
     \begin{itemize}
-        \item Стандартная библиотека
         \item asyncio, aiohttp, aiogram
         \item FastApi, Django
-        \item Pydantic, SqlAlchemy, Alembic, asyncpg
-        \item numpy, pandas, sklearn, nlp-библиотеки
+        \item Pydantic, SQLAlchemy, alembic, asyncpg
+        \item numpy, pandas, sklearn, pytorch
     \end{itemize}
 
-    Имею хорошее знание языка и его работы под капотом благодаря знанию c++.
-}
-
-% fake skills
-\cvitem{
-    \cvheadingstyle{С++17, 20}
-}{
-    Имею навыки написания алгоритмов с помощью STL.  
-    Проходил серию курсов "Разработка на современном С++" от МФТИ и Яндекса на Coursera. Сертификаты: \href{https://coursera.org/share/aa5404b249039031fb8afb2415d9f2d9}{Красный пояс;} \href{https://coursera.org/share/ac14607b020a1162afb5c63cb5624de7}{Желтый пояс;} \href{https://coursera.org/share/fd10894b59ebb0997070e88f79a32d0f}{Белый пояс}
+    Использую питон для быстрого решения задач, не требовательных проектов. Работал с проектом на Python во время стажировки в Яндекс.
 }
 
 % completely fake skills
@@ -372,7 +384,9 @@
     Linux, Unix
     \begin{itemize}
         \item работа с системой, bash, git
-        \item Инструменты траблшутинга
+        \item вместо json предпочитаю protobuf
+        \item Unix
+        \item Docker, CI/CD инструменты в GitHub
     \end{itemize}
 }
 
@@ -388,7 +402,7 @@
 \cvitem{
     \cvheadingstyle{Мои компетенции}
 }{
-    Командная работа, планирование, ориентация на пользователя, саморазвитие. 
+    Командная работа, планирование, ориентация на пользователя, саморазвитие.
 }
 
 \end{document}

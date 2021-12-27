@@ -8,26 +8,26 @@ jobs:
     # Необходимо использовать этот action, чтобы получить содержимое репо
     - uses: actions/checkout@v2
     # Компилируем документ
-    - name: Build document
+    - name: Build resume RUS
       uses: dante-ev/latex-action@v0.2.0
       with:
         # Переименуйте, если у вас другой файл
-        root_file: main.tex
+        root_file: resume.tex
         # Больше параметров в офф. документации
         working_directory: latex_sources/
         # Аргументы, к которыми запускать компилятор (latexmk)
         # -jobname=<name> дает возможность поменять имя выходного файла
-        args: -jobname=my_doc -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+        args: -jobname=resume_ru -pdf -file-line-error -halt-on-error -interaction=nonstopmode
         compiler: lualatex
     # Загружаем собранные pdf-файлы
     - name: Upload pdf document
       uses: actions/upload-artifact@v2
       with:
         # Это значение используется как ключ в хранилище
-        name: my_doc
+        name: resume_ru
         # Путь до собранного pdf. Может содержать “*”, “**”
         # Здесь это <working_directory>/<jobname>.pdf
-        path: latex_sources/my_doc.pdf
+        path: latex_sources/resume_ru.pdf
   deploy:
     runs-on: ubuntu-latest
     # Деплой будет только на ветке main. Закомментируйте, если не надо
@@ -47,7 +47,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           # Тот самый ключ, который мы указывали в upload-artifact
-          name: my_doc
+          name: resume_ru
       - name: Create Release
         uses: actions/create-release@v1
         id: create_release
@@ -56,8 +56,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions
         with:
           # Берем результат из step с id=vars (см. выше). 
-          # Получим теги вида “my_doc-<дата билда>-<первые 8 символов из sha коммита>
-          tag_name: my_doc-${{ steps.vars.outputs.date }}-${{ steps.vars.outputs.sha8 }}
+          # Получим теги вида “resume_ru-<дата билда>-<первые 8 символов из sha коммита>
+          tag_name: resume_ru-${{ steps.vars.outputs.date }}-${{ steps.vars.outputs.sha8 }}
           # Имя, которое будет высвечиваться в релизе
           release_name: Dan's CV (version ${{ steps.vars.outputs.date }})
           # Наш релиз не набросок и не пререлиз, так что оба в false
@@ -73,7 +73,7 @@ jobs:
           # Из предыдущего step с id=create_release генерится upload_url - по нему и надо заливать
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           # Не переходим в папку latex_sources, поскольку download-artifacts грузит в текущую директорию
-          asset_path: ./my_doc.pdf
+          asset_path: ./resume_ru.pdf
           # Имя, которое будет высвечиваться в релизе
           asset_name: dan_cv.pdf
           asset_content_type: application/pdf
