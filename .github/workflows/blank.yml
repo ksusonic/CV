@@ -19,8 +19,19 @@ jobs:
         # -jobname=<name> дает возможность поменять имя выходного файла
         args: -jobname=resume_ru -pdf -file-line-error -halt-on-error -interaction=nonstopmode
         compiler: lualatex
+    - name: Build resume EN
+      uses: dante-ev/latex-action@v0.2.0
+      with:
+        # Переименуйте, если у вас другой файл
+        root_file: resume_en.tex
+        # Больше параметров в офф. документации
+        working_directory: latex_sources/
+        # Аргументы, к которыми запускать компилятор (latexmk)
+        # -jobname=<name> дает возможность поменять имя выходного файла
+        args: -jobname=resume_en -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+        compiler: lualatex
     # Загружаем собранные pdf-файлы
-    - name: Upload pdf document
+    - name: Upload RUS document
       uses: actions/upload-artifact@v2
       with:
         # Это значение используется как ключ в хранилище
@@ -28,10 +39,19 @@ jobs:
         # Путь до собранного pdf. Может содержать “*”, “**”
         # Здесь это <working_directory>/<jobname>.pdf
         path: latex_sources/resume_ru.pdf
+    - name: Upload EN document
+      uses: actions/upload-artifact@v2
+      with:
+        # Это значение используется как ключ в хранилище
+        name: resume_en
+        # Путь до собранного pdf. Может содержать “*”, “**”
+        # Здесь это <working_directory>/<jobname>.pdf
+        path: latex_sources/resume_en.pdf
+
   deploy:
     runs-on: ubuntu-latest
     # Деплой будет только на ветке main. Закомментируйте, если не надо
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main' # FOR CHECK  (!)
     # Можно зависеть от любого другого job. Порядок выполнения будет подстраиваться.
     needs: [build]
     steps:
@@ -43,11 +63,16 @@ jobs:
         run: |
           echo "::set-output name=date::$(date +'%Y-%m-%d')"
           echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
-      - name: Download artifacts
+      - name: Download artifacts for RUS
         uses: actions/download-artifact@v2
         with:
           # Тот самый ключ, который мы указывали в upload-artifact
           name: resume_ru
+      - name: Download artifacts for EN
+        uses: actions/download-artifact@v2
+        with:
+          # Тот самый ключ, который мы указывали в upload-artifact
+          name: resume_en
       - name: Create Release
         uses: actions/create-release@v1
         id: create_release
@@ -64,7 +89,7 @@ jobs:
           draft: false
           prerelease: false
       # Прикладываемые файлы надо заливать отдельным step
-      - name: Upload pdf asset
+      - name: Upload pdf asset RU
         uses: actions/upload-release-asset@v1
         env:
           # Тоже требуется токен
@@ -75,5 +100,18 @@ jobs:
           # Не переходим в папку latex_sources, поскольку download-artifacts грузит в текущую директорию
           asset_path: ./resume_ru.pdf
           # Имя, которое будет высвечиваться в релизе
-          asset_name: dan_cv.pdf
+          asset_name: dan_cv-ru.pdf
+          asset_content_type: application/pdf
+      - name: Upload pdf asset EN
+        uses: actions/upload-release-asset@v1
+        env:
+          # Тоже требуется токен
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # Из предыдущего step с id=create_release генерится upload_url - по нему и надо заливать
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          # Не переходим в папку latex_sources, поскольку download-artifacts грузит в текущую директорию
+          asset_path: ./resume_en.pdf
+          # Имя, которое будет высвечиваться в релизе
+          asset_name: dan_cv-en.pdf
           asset_content_type: application/pdf
