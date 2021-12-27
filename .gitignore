@@ -12,6 +12,10 @@
 *.cb2
 .*.lb
 
+# compiled resumes
+resume_ru.pdf
+resume_en.pdf
+
 ## Intermediate documents:
 *.dvi
 *.xdv
@@ -275,3 +279,4 @@ TSWLatexianTemp*
 # Makeindex log files
 *.lpz
 .DS_Store
+
