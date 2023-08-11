@@ -9,7 +9,7 @@ jobs:
     - uses: actions/checkout@v2
     # Компилируем документ
     - name: Build resume RUS
-      uses: dante-ev/latex-action@v0.2.0
+      uses: dante-ev/latex-action@latest
       with:
         # Переименуйте, если у вас другой файл
         root_file: resume_ru.tex
@@ -20,7 +20,7 @@ jobs:
         args: -jobname=resume_ru -pdf -file-line-error -halt-on-error -interaction=nonstopmode
         compiler: lualatex
     - name: Build resume EN
-      uses: dante-ev/latex-action@v0.2.0
+      uses: dante-ev/latex-action@latest
       with:
         # Переименуйте, если у вас другой файл
         root_file: resume_en.tex
